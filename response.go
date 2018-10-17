@@ -3,11 +3,11 @@ package openweathermap
 // ForecastResponse ...
 // See https://openweathermap.org/forecast5#JSON
 type ForecastResponse struct {
-	Code    string  `json:"cod"`
-	Message float32 `json:"message"`
-	Count   int     `json:"cnt"`
-	City    City    `json:"city"`
-	List    []Forecast
+	Code      string     `json:"cod"`
+	Message   float32    `json:"message"`
+	Count     int        `json:"cnt"`
+	City      City       `json:"city"`
+	Forecasts []Forecast `json:"list"`
 }
 
 // Forecast read only

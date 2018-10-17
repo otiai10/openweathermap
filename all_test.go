@@ -22,6 +22,7 @@ func TestNew(t *testing.T) {
 	res, err := c.ByCityName("tokyo", nil)
 	Expect(t, err).ToBe(nil)
 	Expect(t, res.Code).ToBe("200")
+	Expect(t, res.Forecasts[0].Weather[0].Main).ToBe("Clouds")
 }
 
 func server() *httptest.Server {
