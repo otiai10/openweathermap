@@ -23,6 +23,12 @@ func TestNew(t *testing.T) {
 	Expect(t, err).ToBe(nil)
 	Expect(t, res.Code).ToBe("200")
 	Expect(t, res.Forecasts[0].Weather[0].Main).ToBe("Clouds")
+
+	When(t, "base url is invalid", func(t *testing.T) {
+		client := &Client{BaseURL: ":invalid"}
+		_, err := client.ByCityName("tokyo", nil)
+		Expect(t, err).Not().ToBe(nil)
+	})
 }
 
 func server() *httptest.Server {

@@ -1,5 +1,8 @@
 # OpenWeatherMap API Client for Go
 
+![Go](https://github.com/otiai10/openweathermap/workflows/Go/badge.svg)
+[![codecov](https://codecov.io/gh/otiai10/openweathermap/branch/main/graph/badge.svg?token=5TyeTM6vgn)](https://codecov.io/gh/otiai10/openweathermap)
+
 ```go
 package main
 

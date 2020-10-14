@@ -14,21 +14,16 @@ func (client *Client) ByCityName(name string, opt *Option) (*ForecastResponse, e
 		opt = &DefaultOption
 	}
 
-	u, err := url.Parse(client.BaseURL + "/data/2.5/forecast")
-	if err != nil {
-		return nil, err
-	}
-
-	query := opt.Query()
+	u := client.BaseURL + "/data/2.5/forecast"
 
 	// ?q=Tokyo&mode=json&apikey=1fb791ae4335504a8f367791bd4679d2&units=metric"
-	query.Add("apikey", client.APIKey)
-	query.Add("q", "Tokyo")
-	query.Add("mode", "json")
+	v := url.Values{
+		"apikey": {client.APIKey},
+		"q":      {"Tokyo"},
+		"mode":   {"json"},
+	}
 
-	u.RawQuery = query.Encode()
-
-	res, err := client.HTTPClient.Get(u.String())
+	res, err := client.HTTPClient.Get(u + "?" + v.Encode())
 	if err != nil {
 		return nil, err
 	}
