@@ -1,5 +1,7 @@
 package openweathermap
 
+import "fmt"
+
 // ForecastResponse ...
 // See https://openweathermap.org/forecast5#JSON
 type ForecastResponse struct {
@@ -24,13 +26,8 @@ type Forecast struct {
 		GrandLevel float32 `json:"grand_level"` // hPa
 		Humidity   int     `json:"humidity"`    // %
 	} `json:"main"`
-	Weather []struct {
-		ID          int    `json:"id"`
-		Main        string `json:"main"`
-		Description string `json:"description"`
-		Icon        string `json:"icon"`
-	} `json:"weather"`
-	Clouds struct {
+	Weather []Weather `json:"weather"`
+	Clouds  struct {
 		All int `json:"all"` // %
 	} `json:"clouds"`
 	Wind struct {
@@ -43,4 +40,17 @@ type Forecast struct {
 	Snow struct {
 		For3h float32 `json:"3h"` // Snow volume for last 3 hours (mm)
 	}
+}
+
+// Weather ...
+type Weather struct {
+	ID          int    `json:"id"`
+	Main        string `json:"main"`
+	Description string `json:"description"`
+	Icon        string `json:"icon"`
+}
+
+// IconURL ...
+func (w Weather) IconURL() string {
+	return fmt.Sprintf("https://openweathermap.org/img/wn/%s.png", w.Icon)
 }

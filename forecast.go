@@ -18,7 +18,7 @@ func (client *Client) ByCityName(name string, opt *Option) (*ForecastResponse, e
 	// ?q=Tokyo&mode=json&apikey=1fb791ae4335504a8f367791bd4679d2&units=metric"
 	query := opt.Query()
 	query.Add("apikey", client.APIKey)
-	query.Add("q", "Tokyo")
+	query.Add("q", name)
 	query.Add("mode", "json")
 
 	res, err := client.HTTPClient.Get(u + "?" + query.Encode())
