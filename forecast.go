@@ -2,7 +2,6 @@ package openweathermap
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/url"
 )
 
@@ -29,7 +28,6 @@ func (client *Client) ByCityName(name string, opt *Option) (*ForecastResponse, e
 
 	u.RawQuery = query.Encode()
 
-	fmt.Println(u.String())
 	res, err := client.HTTPClient.Get(u.String())
 	if err != nil {
 		return nil, err
